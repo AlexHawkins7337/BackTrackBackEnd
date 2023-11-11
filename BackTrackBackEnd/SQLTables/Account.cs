@@ -20,6 +20,10 @@ public class Account
     [StringLength(100)]
     public string Username { get; set; }
     
+    [Required]
+    [StringLength(100)]
+    public string Email { get; set; }
+    
     /// <summary>
     /// The Password of the Account
     /// </summary>

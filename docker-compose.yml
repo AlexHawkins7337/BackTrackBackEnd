@@ -1,0 +1,19 @@
+﻿version: '3.4'
+
+services:
+  back_track_back_end:
+    image: back_track_back_end
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+
+  sql_server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "ThisPassword1<"
+    ports:
+      - "1433:1433"

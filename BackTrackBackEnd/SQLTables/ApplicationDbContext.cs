@@ -11,6 +11,16 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<Guid>, Identi
     /// Setting up the accounts database
     /// </summary>
     public DbSet<Account> Accounts { get; set; } 
+    
+    /// <summary>
+    /// The Routine Table
+    /// </summary>
+    public DbSet<Routine> Routines { get; set; }
+    
+    /// <summary>
+    /// The Step Table
+    /// </summary>
+    public DbSet<Step> Steps { get; set; }
 
     /// <summary>
     /// The configuration where the Connection String is stored

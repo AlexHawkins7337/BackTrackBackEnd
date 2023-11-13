@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using BackTrackBackEnd.SQLTables;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

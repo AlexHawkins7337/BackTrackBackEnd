@@ -59,6 +59,13 @@ public class RoutineController : ControllerBase
             return NotFound($"Account with ID {routineDto.AccountId} not found.");
         }
 
+        // Check if a Routine with the same name for the AccountId already exists
+        if (_context.Routines.Any(r => r.AccountId == routineDto.AccountId && r.Name == routineDto.Name))
+        {
+            // Return conflict status with a message indicating the routine already exists
+            return Conflict($"A routine with the name \"{routineDto.Name}\" already exists for the account.");
+        }
+
         var routine = new Routine
         {
             Id = Guid.NewGuid(),

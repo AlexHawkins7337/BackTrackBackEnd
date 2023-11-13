@@ -37,7 +37,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<Guid>, Identi
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Server=sql_server;Database=BackTrackDataBase;User Id=sa;Password=ThisPassword1<; TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=sql_server;Database=BackTrackDataBase;User Id=sa;Password=password123!; TrustServerCertificate=True;");
         }
     }
 }

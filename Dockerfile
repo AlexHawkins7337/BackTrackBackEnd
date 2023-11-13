@@ -11,10 +11,18 @@ COPY . .
 WORKDIR "/src/BackTrackBackEnd"
 RUN dotnet build "BackTrackBackEnd.csproj" -c Release -o /app/build
 
+RUN dotnet tool install --global dotnet-ef
+RUN dotnet add package Microsoft.EntityFrameworkCore.Design
+ENV PATH="$PATH:/root/.dotnet/tools"
+
+ENV ASPNETCORE_URLS=http://+:80
+
 FROM build AS publish
 RUN dotnet publish "BackTrackBackEnd.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+FROM publish AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BackTrackBackEnd.dll"]
+COPY entrypoint.sh ./
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]

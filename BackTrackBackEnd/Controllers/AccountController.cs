@@ -30,7 +30,7 @@ namespace BackTrackBackEnd.Controllers
         }
 
         // POST: api/Account/Login
-        [HttpPost("Login")]
+        [HttpGet("Login")]
         public ActionResult<Guid> Login(string username, string password)
         {
             var account = _context.Accounts.FirstOrDefault(a => a.Username == username && a.Password == password);

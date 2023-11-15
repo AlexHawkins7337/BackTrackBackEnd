@@ -11,8 +11,8 @@ COPY . .
 WORKDIR "/src/BackTrackBackEnd"
 RUN dotnet build "BackTrackBackEnd.csproj" -c Release -o /app/build
 
-RUN dotnet tool install --global dotnet-ef
-RUN dotnet add package Microsoft.EntityFrameworkCore.Design
+RUN dotnet tool install --global dotnet-ef --version 7.0.0
+#RUN dotnet add package Microsoft.EntityFrameworkCore.Design
 ENV PATH="$PATH:/root/.dotnet/tools"
 
 ENV ASPNETCORE_URLS=http://+:80

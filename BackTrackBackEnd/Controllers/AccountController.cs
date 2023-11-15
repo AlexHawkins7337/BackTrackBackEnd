@@ -19,9 +19,25 @@ namespace BackTrackBackEnd.Controllers
 
         // POST: api/Account/Register
         [HttpPost("Register")]
-        public ActionResult<Account> Register(Account account)
+        public IActionResult Register(Account account)
         {
-            // Add password constraints check here
+            // Check for existing username
+            var existingUserWithUsername = _context.Accounts
+                .Any(a => a.Username == account.Username);
+            if (existingUserWithUsername)
+            {
+                return BadRequest("This username is already taken. Please choose a different one.");
+            }
+
+            // Check for existing email
+            var existingUserWithEmail = _context.Accounts
+                .Any(a => a.Email == account.Email);
+            if (existingUserWithEmail)
+            {
+                return BadRequest("This email is already in use. Please choose a different one.");
+            }
+
+            // Add password constraints check here (ensure you hash the password before saving)
 
             _context.Accounts.Add(account);
             _context.SaveChanges();
